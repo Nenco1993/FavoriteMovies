@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">FirebaseRealtimeDatabaseExampleApp</string>
+    <string name="title_activity_favorite_movies">FavoriteMoviesActivity</string>
+
+    <string name="add_movies_toolbar_title">Movies</string>
+    <string name="favorite_movies_toolbar_title">Favorite movies</string>
+    <string name="favorite_movies_dialog_add_review_title">Add review</string>
+    <string name="favorite_movies_dialog_add_review_message">Write your review here</string>
+    <string name="favorite_movies_dialog_add_review_button_save">Save</string>
+    <string name="favorite_movies_dialog_add_review_button_cancel">Cancel</string>
+    <string name="favorite_movies_dialog_add_review_button_saved">Saved</string>
+    <string name="favorite_movies_dialog_add_review_button_canceled">Canceled</string>
+    <string name="favorite_movies_empty">You didn\'t add any movies yet</string>
+
+    <string name="error_failed_to_retrieve_data">Failed to retrieve data</string>
+    <string name="picture_url_first_part">https://image.tmdb.org/t/p/w500</string>
+
+    <string name="menu_popup_delete">Delete movie</string>
+
+
+</resources>
