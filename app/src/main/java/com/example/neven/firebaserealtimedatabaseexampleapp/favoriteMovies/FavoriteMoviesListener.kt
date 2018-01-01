@@ -10,7 +10,5 @@ interface FavoriteMoviesListener : BaseListener {
     fun onPostReviewSuccess()
     fun onMovieReviewLoaded(movieReview: MovieReview)
     fun onFavoriteMoviesLoaded(query: Query)
-    fun setValueEventReviewListener(listener: ValueEventListener)
-    fun setReviewDatabaseReference(dbRef: DatabaseReference)
 
 }

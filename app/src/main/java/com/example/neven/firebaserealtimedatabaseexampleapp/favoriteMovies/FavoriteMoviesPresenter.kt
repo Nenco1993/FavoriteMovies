@@ -12,8 +12,7 @@ import javax.inject.Inject
 class FavoriteMoviesPresenter @Inject constructor(val interactor: FavoriteMoviesInteractor) : FavoriteMoviesContract.Presenter, FavoriteMoviesListener {
 
     private var view: FavoriteMoviesContract.View? = null
-    private var dbReviews: DatabaseReference? = null
-    private var valueEventReviewListener: ValueEventListener? = null
+
 
     override fun takeView(view: FavoriteMoviesContract.View) {
         this.view = view
@@ -32,15 +31,7 @@ class FavoriteMoviesPresenter @Inject constructor(val interactor: FavoriteMovies
     }
 
     override fun removeReviewListener() {
-        dbReviews?.removeEventListener(valueEventReviewListener)
-    }
-
-    override fun setValueEventReviewListener(listener: ValueEventListener) {
-        valueEventReviewListener = listener
-    }
-
-    override fun setReviewDatabaseReference(dbRef: DatabaseReference) {
-        dbReviews = dbRef
+        interactor.removeReviewListener()
     }
 
     override fun onPostReviewSuccess() {

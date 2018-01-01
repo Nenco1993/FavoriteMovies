@@ -27,6 +27,7 @@ class FavoriteMoviesContract {
     interface Interactor {
         fun postReview(movieReview: MovieReview, listener: FavoriteMoviesListener)
         fun getReview(movieReview: MovieReview, listener: FavoriteMoviesListener)
+        fun removeReviewListener()
         fun getFavoriteMovies(listener: FavoriteMoviesListener)
         fun deleteFavoriteMovie(movie: Movie)
 

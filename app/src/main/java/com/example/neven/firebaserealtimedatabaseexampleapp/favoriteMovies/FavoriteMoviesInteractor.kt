@@ -12,6 +12,7 @@ class FavoriteMoviesInteractor @Inject constructor(database: FirebaseDatabase) :
 
     private val dbMovies = database.getReference(FavoriteMoviesConstants.KEY_FIREBASE_DATABASE_REF_MOVIES)
     private val dbReviews = database.getReference(FavoriteMoviesConstants.KEY_FIREBASE_DATABASE_REF_REVIEWS)
+    private var valueEventReviewListener: ValueEventListener? = null
 
     override fun getFavoriteMovies(listener: FavoriteMoviesListener) {
         val query: Query = dbMovies
@@ -25,7 +26,7 @@ class FavoriteMoviesInteractor @Inject constructor(database: FirebaseDatabase) :
     }
 
     override fun getReview(movieReview: MovieReview, listener: FavoriteMoviesListener) {
-        val valueEventReviewListener = dbReviews.child(movieReview.reviewID.toString()).addValueEventListener(object : ValueEventListener {
+        valueEventReviewListener = dbReviews.child(movieReview.reviewID.toString()).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError?) {
             }
 
@@ -36,10 +37,12 @@ class FavoriteMoviesInteractor @Inject constructor(database: FirebaseDatabase) :
                 }
             }
         })
-        listener.setValueEventReviewListener(valueEventReviewListener)
-        listener.setReviewDatabaseReference(dbReviews)
+
     }
 
+    override fun removeReviewListener() {
+        dbReviews.removeEventListener(valueEventReviewListener)
+    }
 
     override fun deleteFavoriteMovie(movie: Movie) {
         deleteMovie(dbMovies, movie)
