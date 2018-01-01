@@ -25,9 +25,8 @@ class FavoriteMoviesInteractor @Inject constructor(database: FirebaseDatabase) :
     }
 
     override fun getReview(movieReview: MovieReview, listener: FavoriteMoviesListener) {
-        dbReviews.child(movieReview.reviewID.toString()).addValueEventListener(object : ValueEventListener {
+        val valueEventReviewListener = dbReviews.child(movieReview.reviewID.toString()).addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError?) {
-
             }
 
             override fun onDataChange(p0: DataSnapshot?) {
@@ -37,7 +36,10 @@ class FavoriteMoviesInteractor @Inject constructor(database: FirebaseDatabase) :
                 }
             }
         })
+        listener.setValueEventReviewListener(valueEventReviewListener)
+        listener.setReviewDatabaseReference(dbReviews)
     }
+
 
     override fun deleteFavoriteMovie(movie: Movie) {
         deleteMovie(dbMovies, movie)
@@ -47,4 +49,6 @@ class FavoriteMoviesInteractor @Inject constructor(database: FirebaseDatabase) :
     fun deleteMovie(dbRef: DatabaseReference, movie: Movie) {
         dbRef.child(movie.id.toString()).setValue(null)
     }
+
+
 }

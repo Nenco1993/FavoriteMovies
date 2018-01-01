@@ -55,6 +55,7 @@ class FavoriteMoviesActivity : BaseActivity(), FavoriteMoviesAdapter.OnMovieClic
     override fun onStop() {
         super.onStop()
         adapterMovies?.stopListening()
+        presenter.removeReviewListener()
     }
 
     override fun injectDependencies(appComponent: AppComponent) {

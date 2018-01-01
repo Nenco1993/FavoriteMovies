@@ -1,7 +1,9 @@
 package com.example.neven.firebaserealtimedatabaseexampleapp.favoriteMovies
 
 import com.example.neven.firebaserealtimedatabaseexampleapp.addMovie.Movie
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
 import javax.inject.Inject
 
 /**
@@ -10,6 +12,8 @@ import javax.inject.Inject
 class FavoriteMoviesPresenter @Inject constructor(val interactor: FavoriteMoviesInteractor) : FavoriteMoviesContract.Presenter, FavoriteMoviesListener {
 
     private var view: FavoriteMoviesContract.View? = null
+    private var dbReviews: DatabaseReference? = null
+    private var valueEventReviewListener: ValueEventListener? = null
 
     override fun takeView(view: FavoriteMoviesContract.View) {
         this.view = view
@@ -25,6 +29,18 @@ class FavoriteMoviesPresenter @Inject constructor(val interactor: FavoriteMovies
 
     override fun saveReview(movieReview: MovieReview) {
         interactor.postReview(movieReview, this)
+    }
+
+    override fun removeReviewListener() {
+        dbReviews?.removeEventListener(valueEventReviewListener)
+    }
+
+    override fun setValueEventReviewListener(listener: ValueEventListener) {
+        valueEventReviewListener = listener
+    }
+
+    override fun setReviewDatabaseReference(dbRef: DatabaseReference) {
+        dbReviews = dbRef
     }
 
     override fun onPostReviewSuccess() {

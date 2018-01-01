@@ -21,6 +21,7 @@ class FavoriteMoviesContract {
         fun loadReview(movieReview: MovieReview)
         fun loadFavoriteMovies()
         fun removeFavoriteMovie(movie: Movie)
+        fun removeReviewListener()
     }
 
     interface Interactor {

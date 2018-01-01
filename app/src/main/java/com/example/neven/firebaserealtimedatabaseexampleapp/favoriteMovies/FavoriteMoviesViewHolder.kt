@@ -6,6 +6,5 @@ import android.view.View
 /**
  * Created by Neven on 28.9.2017..
  */
-class FavoriteMoviesViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+class FavoriteMoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-}

@@ -18,19 +18,19 @@ import kotlinx.android.synthetic.main.list_item_favorite_movie.view.*
 class FavoriteMoviesAdapter(options: FirebaseRecyclerOptions<Movie>, private val onMovieClickListener: OnMovieClickListener) : FirebaseRecyclerAdapter<Movie, FavoriteMoviesViewHolder>(options) {
 
     override fun onBindViewHolder(holder: FavoriteMoviesViewHolder, position: Int, singleMovie: Movie) {
-        holder.itemView?.tvFavoriteMoviesTitle?.text = singleMovie.title
-        val firstPart = holder.itemView?.context?.getString(R.string.picture_url_first_part)
+        holder.itemView.tvFavoriteMoviesTitle.text = singleMovie.title
+        val firstPart = holder.itemView.context.getString(R.string.picture_url_first_part)
         val pictureID: String? = singleMovie.posterPath
         val pictureURL = firstPart + pictureID
         Glide
-                .with(holder.itemView?.context)
+                .with(holder.itemView.context)
                 .load(pictureURL)
-                .into(holder.itemView?.ivFavoritesMoviesPicture)
+                .into(holder.itemView.ivFavoritesMoviesPicture)
 
-        holder.itemView?.ivFavoriteMoviesAddReview?.setOnClickListener {
+        holder.itemView.ivFavoriteMoviesAddReview?.setOnClickListener {
             onMovieClickListener.onAddReviewClicked(singleMovie)
         }
-        holder.itemView?.setOnLongClickListener {
+        holder.itemView.setOnLongClickListener {
             onMovieClickListener.onMovieLongClicked(singleMovie, holder.itemView)
             true
         }

@@ -7,7 +7,6 @@ class AddMoviePresenter @Inject constructor(val interactor: AddMovieContract.Int
 
     var view: AddMovieContract.View? = null
 
-
     override fun loadData() {
         interactor.downloadData(this)
     }
@@ -37,9 +36,7 @@ class AddMoviePresenter @Inject constructor(val interactor: AddMovieContract.Int
     }
 
     override fun onFailure() {
-
         view?.showFailureMessage()
-
     }
 
     override fun unsubscribe() {

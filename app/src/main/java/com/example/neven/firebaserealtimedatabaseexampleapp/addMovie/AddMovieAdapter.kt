@@ -11,29 +11,26 @@ import org.jetbrains.anko.image
 
 class AddMovieAdapter(private val listMovies: List<Movie>, private val onStarClickListener: OnStarClickListener) : RecyclerView.Adapter<AddMovieViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AddMovieViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.list_item_add_movie, parent, false)
-
         return AddMovieViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: AddMovieViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: AddMovieViewHolder, position: Int) {
         val singleMovie: Movie = listMovies[position]
-
         val firstPart = holder?.itemView?.context?.getString(R.string.picture_url_first_part)
-        val pictureID: String = singleMovie.posterPath!!
+        val pictureID: String? = singleMovie.posterPath
         val pictureURL = firstPart + pictureID
 
         Glide
-                .with(holder?.itemView?.context)
+                .with(holder.itemView.context)
                 .load(pictureURL)
-                .into(holder?.itemView?.ivAddMoviePicture)
+                .into(holder.itemView.ivAddMoviePicture)
 
-        holder?.itemView?.tvAddMovieTitle?.text = singleMovie.title
+        holder.itemView.tvAddMovieTitle.text = singleMovie.title
 
-        val ivStarOff = ContextCompat.getDrawable(holder!!.itemView!!.context, android.R.drawable.star_off)
-        val ivStarOn = ContextCompat.getDrawable(holder.itemView!!.context, android.R.drawable.star_on)
+        val ivStarOff = ContextCompat.getDrawable(holder.itemView.context, android.R.drawable.star_off)
+        val ivStarOn = ContextCompat.getDrawable(holder.itemView.context, android.R.drawable.star_on)
 
         if (singleMovie.isFavorite) {
             holder.itemView.ivAddMovieToFavorites?.image = ivStarOn
