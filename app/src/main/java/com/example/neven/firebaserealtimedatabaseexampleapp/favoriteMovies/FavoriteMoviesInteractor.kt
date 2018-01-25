@@ -37,11 +37,12 @@ class FavoriteMoviesInteractor @Inject constructor(database: FirebaseDatabase) :
                 }
             }
         })
-
     }
 
     override fun removeReviewListener() {
-        dbReviews.removeEventListener(valueEventReviewListener)
+        if (valueEventReviewListener != null) {
+            dbReviews.removeEventListener(valueEventReviewListener)
+        }
     }
 
     override fun deleteFavoriteMovie(movie: Movie) {
